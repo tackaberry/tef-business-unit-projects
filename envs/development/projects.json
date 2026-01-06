@@ -1,0 +1,12 @@
+{
+  "project-1": {
+    "project_name": "project-1-pb",
+    "editor_group": [ "gcp-editors-proj2" ],
+    "admin_group": [ ],
+    "template": "project-template-1-admin",
+    "metadata": {
+      "type": "admin",
+      "data_classification": "pb"
+    }
+  }
+}
