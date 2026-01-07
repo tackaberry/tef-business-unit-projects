@@ -2,7 +2,17 @@
   "project-1": {
     "project_name": "project-1-pb",
     "editor_group": [ "gcp-editors-proj2" ],
-    "admin_group": [ ],
+    "admin_group": [ "gcp-organization-admins" ],
+    "template": "project-template-1-admin",
+    "metadata": {
+      "type": "admin",
+      "data_classification": "pb"
+    }
+  },
+  "project-2": {
+    "project_name": "project-2-pb",
+    "editor_group": [ "gcp-editors-proj2" ],
+    "admin_group": [ "gcp-organization-admins" ],
     "template": "project-template-1-admin",
     "metadata": {
       "type": "admin",

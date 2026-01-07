@@ -14,7 +14,7 @@
  * limitations under the License.
  */
  
- resource "google_compute_network" "vpc_network" {
+resource "google_compute_network" "vpc_network" {
   name                    = local.vpc_name
   project            = google_project.main.project_id
   auto_create_subnetworks = false

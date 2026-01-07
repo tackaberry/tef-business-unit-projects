@@ -1,14 +1,42 @@
 
 locals {
+
+  activate_apis = [
+    "serviceusage.googleapis.com",
+    "servicenetworking.googleapis.com",
+    "cloudkms.googleapis.com",
+    "compute.googleapis.com",
+    "logging.googleapis.com",
+    "bigquery.googleapis.com",
+    "cloudresourcemanager.googleapis.com",
+    "cloudbilling.googleapis.com",
+    "cloudbuild.googleapis.com",
+    "iam.googleapis.com",
+    "admin.googleapis.com",
+    "appengine.googleapis.com",
+    "storage-api.googleapis.com",
+    "monitoring.googleapis.com",
+    "pubsub.googleapis.com",
+    "securitycenter.googleapis.com",
+    "accesscontextmanager.googleapis.com",
+    "billingbudgets.googleapis.com",
+    "essentialcontacts.googleapis.com",
+    "assuredworkloads.googleapis.com",
+    "cloudasset.googleapis.com",
+    "cloudidentity.googleapis.com",
+    "networksecurity.googleapis.com"
+  ]
+
     org_roles =[
       "roles/resourcemanager.organizationViewer",
       "roles/serviceusage.serviceUsageConsumer",
+      "roles/iam.securityReviewer",
     ]
     folder_roles = [
       "roles/resourcemanager.folderAdmin",
-      "roles/artifactregistry.admin",
+    #   "roles/artifactregistry.admin",
       "roles/compute.networkAdmin",
-      "roles/compute.xpnAdmin",
+    #   "roles/compute.xpnAdmin",
       "roles/iam.serviceAccountAdmin",
       "roles/resourcemanager.projectDeleter",
       "roles/resourcemanager.projectCreator",
@@ -16,9 +44,11 @@ locals {
     project_roles = [
       "roles/storage.admin",
       "roles/iam.serviceAccountAdmin",
-      "roles/resourcemanager.projectDeleter",
-      "roles/cloudkms.admin",
+      "roles/compute.networkAdmin", # create project networking
+    #   "roles/resourcemanager.projectDeleter",
+    #   "roles/cloudkms.admin",
     ]
+    
 }
 
 resource "google_project" "seed_project" {
@@ -27,6 +57,13 @@ resource "google_project" "seed_project" {
   folder_id           = local.parent_folder_name
   billing_account     = local.billing_account
   auto_create_network = false
+}
+
+resource "google_project_service" "activate_apis" {
+  for_each           = toset(local.activate_apis)
+  project            = google_project.seed_project.project_id
+  service            = each.value
+  disable_on_destroy = false
 }
 
 resource "google_storage_bucket" "tfstate_bucket" {
