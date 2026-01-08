@@ -69,3 +69,13 @@ variable "regions" {
   description = "The regions for subnets."
   type        = list(string)
 }
+
+# variable "firewall_endpoint_1" {
+#   description = "firewall_endpoint"
+#   type        = string
+# }
+
+# variable "firewall_endpoint_2" {
+#   description = "firewall_endpoint"
+#   type        = string
+# }

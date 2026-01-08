@@ -23,7 +23,7 @@ resource "google_network_security_firewall_endpoint_association" "association_1"
   parent            = "projects/${google_project.main.project_id}"
   location          = "${var.regions[0]}-a"
   network           = google_compute_network.vpc_network.id
-  firewall_endpoint = data.terraform_remote_state.ngfw_shared.outputs.firewall_endpoint_1.id
+  firewall_endpoint = var.firewall_endpoint_1
   disabled          = false
 
   depends_on = [google_project_service.networksecurity_service]
@@ -36,7 +36,7 @@ resource "google_network_security_firewall_endpoint_association" "association_2"
   parent            = "projects/${google_project.main.project_id}"
   location          = "${var.regions[0]}-b"
   network           = google_compute_network.vpc_network.id
-  firewall_endpoint = data.terraform_remote_state.ngfw_shared.outputs.firewall_endpoint_2.id
+  firewall_endpoint = var.firewall_endpoint_2
   disabled          = false
 
   depends_on = [google_project_service.networksecurity_service]

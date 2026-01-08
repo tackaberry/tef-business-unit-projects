@@ -36,5 +36,8 @@ module "projects" {
 
   regions = local.regions
 
+  # firewall_endpoint_1 = var.firewall_endpoint_1
+  # firewall_endpoint_2 = var.firewall_endpoint_2
+
 
 }

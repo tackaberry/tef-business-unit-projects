@@ -27,3 +27,21 @@ resource "random_string" "suffix" {
   upper   = false
   special = false
 }
+
+# resource "google_assured_workloads_workload" "folder_db_pb" {
+#   compliance_regime         = "DATA_BOUNDARY_FOR_CANADA_PROTECTED_B"
+#   display_name              = "fldr-${local.project_prefix}-pb-${random_string.suffix.result}"
+#   location                  = "ca"
+#   organization              = local.organization
+#   billing_account           = "billingAccounts/${local.billing_account}"
+#   enable_sovereign_controls = true
+
+#   provisioned_resources_parent = local.parent_folder_name
+
+#   resource_settings {
+#     resource_type = "CONSUMER_FOLDER"
+#   }
+
+#   provider                  = google-beta
+
+# }
